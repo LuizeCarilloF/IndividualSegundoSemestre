@@ -5,11 +5,9 @@ import org.springframework.jdbc.core.JdbcTemplate
 @Suppress("UNREACHABLE_CODE")
 class LoginRepositorio {
 
-    // objeto JdbcTemplate usado para interagir com o banco de dados
     lateinit var jdbcTemplate: JdbcTemplate
 
 
-    // método para iniciar o repositório, geralmente chamado no início para configurar a conexão com o banco de dados
     fun iniciar() {
         jdbcTemplate = Conexao.jdbcTemplate!!
     }
@@ -24,7 +22,7 @@ class LoginRepositorio {
             return true
         } catch (e: EmptyResultDataAccessException) {
             println("Seu login não está no banco...")
-            return false // Ou outro valor padrão que faça sentido no seu contexto
+            return false
         }
     }
 

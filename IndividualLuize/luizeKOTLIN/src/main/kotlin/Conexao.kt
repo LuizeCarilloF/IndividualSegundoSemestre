@@ -9,13 +9,28 @@ object Conexao {
                 val dataSource = BasicDataSource()
                 dataSource.driverClassName = "com.mysql.cj.jdbc.Driver"
                 dataSource.url= "jdbc:mysql://localhost:3306/nocline"
-                dataSource.username = "noc_line"
-                dataSource.password = "noc_line134#"
+                dataSource.username = "ubuntu"
+                dataSource.password = "urubu100"
                 val novoJdbcTemplate = JdbcTemplate(dataSource)
                 field = novoJdbcTemplate
             }
             return  field
         }
+
+    var jdbcTemplate_server: JdbcTemplate? = null
+        get() {
+            if (field == null){
+                val dataSource = BasicDataSource()
+                dataSource.driverClassName = "com.microsoft.sqlserver.jdbc.SQLServerDriver"
+                dataSource.url = "jdbc:sqlserver://52.22.58.174;database=nocline;encrypt=false;trustServerCertificate=false"
+                dataSource.username = "sa"
+                dataSource.password = "urubu100"
+                jdbcTemplate_server = JdbcTemplate(dataSource)
+
+            }
+            return  field
+        }
+
 
     fun criarTabelas() {
         val jdbcTemplate = Conexao.jdbcTemplate ?: throw IllegalStateException("O jdbcTemplate não foi inicializado corretamente.")
